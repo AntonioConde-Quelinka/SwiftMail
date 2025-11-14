@@ -84,7 +84,7 @@ do {
             
             // Create sender and recipients
             let sender = EmailAddress(name: "Test Sender", address: username)
-            let recipient = EmailAddress(name: "Test Recipient", address: username) // Primary recipient
+            let recipient = EmailAddress(name: "Test Recipient", address: "aconde@maz.es") // Primary recipient
             
             // Create a demo email with Swift logo, including CC and BCC recipients
             let email = try await Email.demo(

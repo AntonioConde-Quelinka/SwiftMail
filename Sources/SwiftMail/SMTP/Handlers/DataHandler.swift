@@ -12,7 +12,7 @@ final class DataHandler: BaseSMTPHandler<Bool>, @unchecked Sendable {
      - Parameter response: The response to process
      - Returns: Whether the handler is complete
      */
-    override func processResponse(_ response: SMTPResponse) -> Bool {
+    override func processResponse(_ response: SMTPResponse, context fallBackContext: ChannelHandlerContext? = nil) -> Bool {
         
         // 3xx responses are considered successful for DATA command (server is ready for content)
         if response.code >= 300 && response.code < 400 {

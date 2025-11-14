@@ -12,7 +12,7 @@ final class QuitHandler: BaseSMTPHandler<Bool>, @unchecked Sendable {
      - Parameter response: The response to process
      - Returns: Whether the handler is complete
      */
-    override func processResponse(_ response: SMTPResponse) -> Bool {
+    override func processResponse(_ response: SMTPResponse, context fallBackContext: ChannelHandlerContext? = nil) -> Bool {
         // For QUIT command, any response is considered successful since we're going to close the connection anyway
         // But we should log the response for debugging purposes
         

@@ -12,7 +12,7 @@ final class SendContentHandler: BaseSMTPHandler<Void>, @unchecked Sendable {
      - Parameter response: The response to process
      - Returns: Whether the handler is complete
      */
-    override func processResponse(_ response: SMTPResponse) -> Bool {
+    override func processResponse(_ response: SMTPResponse, context fallBackContext: ChannelHandlerContext? = nil) -> Bool {
         
         // 2xx responses are considered successful
         if response.code >= 200 && response.code < 300 {

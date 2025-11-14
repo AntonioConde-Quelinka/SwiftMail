@@ -16,7 +16,7 @@ protocol SMTPCommandHandler: ChannelInboundHandler, Sendable where ResultType: S
     /// Process a response from the server
     /// - Parameter response: The response to process
     /// - Returns: Whether the handler is complete
-    func processResponse(_ response: SMTPResponse) -> Bool
+    func processResponse(_ response: SMTPResponse, context fallBackContext: ChannelHandlerContext?) -> Bool
     
     /// Required initializer for creating handler instances
     /// - Parameters:

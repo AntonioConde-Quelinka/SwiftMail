@@ -48,7 +48,7 @@ final class AuthHandler: BaseSMTPHandler<AuthResult>, @unchecked Sendable {
     /// Process a response line from the server
     /// - Parameter response: The response line to process
     /// - Returns: Whether the handler is complete
-    override func processResponse(_ response: SMTPResponse) -> Bool {
+    override func processResponse(_ response: SMTPResponse, context fallBackContext: ChannelHandlerContext? = nil) -> Bool {
         // Handle authentication based on the method and current state
         switch method {
         case .plain:

@@ -12,7 +12,7 @@ final class StartTLSHandler: BaseSMTPHandler<Bool>, @unchecked Sendable {
      - Parameter response: The response to process
      - Returns: Whether the handler is complete
      */
-    override func processResponse(_ response: SMTPResponse) -> Bool {
+    override func processResponse(_ response: SMTPResponse, context fallBackContext: ChannelHandlerContext? = nil) -> Bool {
         if response.code == 220 {
             // 220 Ready to start TLS
             promise.succeed(true)

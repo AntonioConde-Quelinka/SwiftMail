@@ -26,7 +26,7 @@ class BaseSMTPHandler<T: Sendable>: ChannelInboundHandler, RemovableChannelHandl
     /// Process a response line from the server
     /// - Parameter response: The response line to process
     /// - Returns: Whether the handler is complete
-    open func processResponse(_ response: SMTPResponse) -> Bool {
+    open func processResponse(_ response: SMTPResponse, context fallBackContext: ChannelHandlerContext? = nil) -> Bool {
         // Default implementation just checks for success/failure response codes
         // Subclasses should override this to handle command-specific responses
         
@@ -73,7 +73,7 @@ class BaseSMTPHandler<T: Sendable>: ChannelInboundHandler, RemovableChannelHandl
         let response = unwrapInboundIn(data)
         
         // Process the response directly
-        let isComplete = processResponse(response)
+        let isComplete = processResponse(response, context: context)
         
         // If the handler is complete, remove it from the pipeline
         if isComplete {

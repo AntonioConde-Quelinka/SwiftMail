@@ -33,12 +33,12 @@ final class LoginAuthHandler: BaseSMTPHandler<AuthResult>, @unchecked Sendable {
     /// Process a response line from the server
     /// - Parameter response: The response line to process
     /// - Returns: Whether the handler is complete
-    override func processResponse(_ response: SMTPResponse) -> Bool {
+    override func processResponse(_ response: SMTPResponse, context fallBackContext: ChannelHandlerContext? = nil) -> Bool {
         
         // Use the state machine to process the response
         let result = stateMachine.processResponse(response) { [weak self] credential in
             // This closure is called when we need to send a credential
-            guard let self = self, let context = self.context else {
+            guard let self = self, let context = (self.context ?? fallBackContext) else {
                 self?.promise.fail(SMTPError.connectionFailed("Channel context is nil"))
                 return
             }
