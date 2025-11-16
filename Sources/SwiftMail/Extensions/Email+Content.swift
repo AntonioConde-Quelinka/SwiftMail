@@ -38,8 +38,8 @@ extension Email {
         let textBody: String
         let htmlBody: String?
 
-        if use8BitMIME && self.textBody.isSafe8BitContent() &&
-           (self.htmlBody == nil || self.htmlBody!.isSafe8BitContent()) {
+        if use8BitMIME && self.textBody.isSafe8BitContent() {
+           //(self.htmlBody == nil || self.htmlBody!.isSafe8BitContent()) {
             textEncoding = "8bit"
             textBody = self.textBody
             htmlBody = self.htmlBody
